@@ -24,7 +24,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--txt);min-height:10
 .card-s{font-size:11px;color:var(--txt3)}
 
 /* Tabs */
-.tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid var(--border);overflow-x:auto}
+.tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid var(--border);flex-wrap:wrap}
 .tab{padding:9px 18px;font-size:13px;font-weight:500;color:var(--txt3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s}
 .tab:hover{color:var(--txt2)}
 .tab.active{color:var(--blue);border-bottom-color:var(--blue)}
@@ -117,12 +117,10 @@ tr:last-child td{border-bottom:none}
     <div class="tab active" data-tab="0">各階段進度</div>
     <div class="tab" data-tab="1">月度達成率</div>
     <div class="tab" data-tab="2">廠商分析</div>
-    <div class="tab" data-tab="3">辦事處進度</div>
   </div>
   <div id="pane0" class="pane active"></div>
   <div id="pane1" class="pane"></div>
   <div id="pane2" class="pane"></div>
-  <div id="pane3" class="pane"></div>
   <div class="status" id="status"><span class="spinner"></span>從 Google Sheets 讀取資料中…</div>
 </div>
 <script>
@@ -291,7 +289,7 @@ async function init(){
     document.getElementById('status').style.display='none';
     var now=new Date();
     document.getElementById('updated').innerHTML='資料讀取時間<br>'+now.getFullYear()+'/'+pad(now.getMonth()+1)+'/'+pad(now.getDate())+' '+pad(now.getHours())+':'+pad(now.getMinutes());
-    renderCards(d);renderTab0(d);renderTab1(d);renderTab2(d);renderTab3(d);
+    renderCards(d);renderTab0(d);renderTab1(d);renderTab2(d);
   }catch(e){
     document.getElementById('status').className='status';
     document.getElementById('status').style.color='var(--red)';
